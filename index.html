@@ -1,0 +1,52 @@
+<html>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <body>
+        <span id="connected">Estou conectado</span><br>
+        <span id="speed">0 Mbps</span>
+    </body>
+
+    <style>
+        body {
+            background-color: #0c8256;
+            color: white;
+
+            text-align: center;
+        }
+
+        #connected {
+            font-size: 2rem;
+        }
+        #speed {
+            font-size: 1.5rem;
+        }
+    </style>
+
+    <script>
+        if (navigator.onLine) {
+            document.querySelector("#connected").innerText = 'Estou com internet 😀';
+            document.title = '😀 Conexão';
+        } else {
+            document.querySelector("#connected").innerText = 'Estou sem internet 😔';
+            document.title = '😔 Conexão';
+        }
+        
+        window.addEventListener('offline', function(e) {
+            document.querySelector("#connected").innerText = 'Estou sem internet 😔';
+            document.title = '😔 Conexão';
+        });
+        
+        window.addEventListener('online', function(e) {
+            document.querySelector("#connected").innerText = 'Estou com internet 😀';
+            document.title = '😀 Conexão';
+        });
+
+        document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps';
+
+        navigator.connection.onchange = function (e) {
+            document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps';
+        }
+    </script>
+</html>
