@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <body>
-        <span id="connected">Estou conectado</span><br>
-        <span id="speed">0 Mbps</span>
+        <span id="connected">Estou conectado 😀</span><br>
+        <span id="speed">0 Mbps 💀</span>
     </body>
 
     <style>
@@ -44,20 +44,33 @@
         });
 
 
-        var emojiVelocidade = '🐆';
-        if (navigator.connection.downlink < 1) {
-            emojiVelocidade = '🐌';
-        }
-
-        document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps ' + emojiVelocidade;
+        document.querySelector("#speed").innerText = buscaVelocidade() + ' Mbps ' + montaEmojiVelocidade();
 
         navigator.connection.onchange = function (e) {
+            document.querySelector("#speed").innerText = buscaVelocidade() + ' Mbps' + montaEmojiVelocidade();
+        }
+
+        function buscaVelocidade() {
+            var velocidade = navigator.connection.downlink;
+
+            if (navigator.onLine == false) {
+                velocidade = 0;
+            }
+
+            return velocidade;
+        }
+
+        function montaEmojiVelocidade() {
             var emojiVelocidade = '🐆';
-            if (navigator.connection.downlink < 1) {
+            var velocidade = buscaVelocidade();
+
+            if (velocidade == 0) {
+                emojiVelocidade =  '💀';
+            } else if (velocidade < 1) {
                 emojiVelocidade = '🐌';
             }
 
-            document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps' + emojiVelocidade;
+            return emojiVelocidade;
         }
     </script>
 </html>
