@@ -43,10 +43,16 @@
             document.title = '😀 Conexão';
         });
 
-        document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps';
+
+        var emojiVelocidade = '🐆';
+        if (navigator.connection.downlink < 1) {
+            emojiVelocidade = '🐌';
+        }
+
+        document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps ' + emojiVelocidade;
 
         navigator.connection.onchange = function (e) {
-            document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps';
+            document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps' + emojiVelocidade;
         }
     </script>
 </html>
