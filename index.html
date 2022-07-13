@@ -52,6 +52,11 @@
         document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps ' + emojiVelocidade;
 
         navigator.connection.onchange = function (e) {
+            var emojiVelocidade = '🐆';
+            if (navigator.connection.downlink < 1) {
+                emojiVelocidade = '🐌';
+            }
+
             document.querySelector("#speed").innerText = navigator.connection.downlink + ' Mbps' + emojiVelocidade;
         }
     </script>
