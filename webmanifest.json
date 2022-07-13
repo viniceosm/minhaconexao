@@ -1,0 +1,9 @@
+{
+    "theme_color": "#0c8256",
+    "background_color": "#0c8256",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/",
+    "name": "minhaconexao",
+    "short_name": "minhaconexao"
+  }
